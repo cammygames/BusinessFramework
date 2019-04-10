@@ -1,0 +1,19 @@
+name: Mercury Works/BusinessFramework
+version: 1.0.0
+description: Framework for creating jobs
+author: Mercury Works
+license: LGPL
+server:
+  main:
+    - MercuryWorks.BusinessFramework.Server
+  include:
+    - MercuryWorks.BusinessFramework.Shared
+client:
+  main:
+    - MercuryWorks.BusinessFramework.Client
+  include:
+    - MercuryWorks.BusinessFramework.Shared
+  files:
+    - Overlays/BusinessFrameworkOverlay.html
+dependencies:
+  IgiCore/vehicles: ^1.0.0
