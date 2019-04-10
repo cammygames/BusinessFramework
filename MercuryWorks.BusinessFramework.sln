@@ -2,16 +2,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{948B836A-886E-4B32-A0EA-E05600D93ED9}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1305E139-CC67-4CD2-8DF6-1D1C2EAF1834}"
 	ProjectSection(SolutionItems) = preProject
 		nfive.yml = nfive.yml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessFramework.Client", "JobFramework.Client\BusinessFramework.Client.csproj", "{3CDA324F-D354-4749-8C08-12A30D5FF1FF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessFramework.Client", "BusinessFramework.Client\BusinessFramework.Client.csproj", "{3CDA324F-D354-4749-8C08-12A30D5FF1FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessFramework.Server", "JobFramework.Server\BusinessFramework.Server.csproj", "{A2023689-C39D-4BCB-B2CC-2AFF3E423D5B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessFramework.Server", "BusinessFramework.Server\BusinessFramework.Server.csproj", "{A2023689-C39D-4BCB-B2CC-2AFF3E423D5B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessFramework.Shared", "JobFramework.Shared\BusinessFramework.Shared.csproj", "{CBC5322E-3C1F-48EE-B57F-5D4B9DD6A937}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessFramework.Shared", "BusinessFramework.Shared\BusinessFramework.Shared.csproj", "{CBC5322E-3C1F-48EE-B57F-5D4B9DD6A937}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,6 +36,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {C8273DD0-CF79-4D47-B2F4-7F6A5C5356E3}
+		SolutionGuid = {B7D0F2C4-074C-4870-A8BC-9497D509C488}
 	EndGlobalSection
 EndGlobal

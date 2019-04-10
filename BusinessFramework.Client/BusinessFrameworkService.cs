@@ -8,6 +8,7 @@ using NFive.SDK.Core.Diagnostics;
 using NFive.SDK.Core.Models.Player;
 using System;
 using System.Threading.Tasks;
+using CitizenFX.Core;
 using MercuryWorks.BusinessFramework.Client.Overlays;
 using MercuryWorks.BusinessFramework.Shared;
 
@@ -36,6 +37,13 @@ namespace MercuryWorks.BusinessFramework.Client
 
 			// Attach a tick handler
 			this.Ticks.Attach(OnTick);
+
+			//test memes
+			Blip test = World.CreateBlip(new Vector3(-717, -156, 36));
+			test.Sprite = BlipSprite.Barber;
+			test.Color = BlipColor.Red;
+			test.IsShortRange = true;
+			test.Name = "Test Marker 1";
 		}
 
 		private async Task OnTick()

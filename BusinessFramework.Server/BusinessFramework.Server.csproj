@@ -56,10 +56,10 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="IgiCore.Characters.Server.net">
-      <HintPath>..\plugins\IgiCore\characters\IgiCore.Characters.Server.net.dll</HintPath>
+      <HintPath>..\..\characters\IgiCore.Characters.Server.net.dll</HintPath>
     </Reference>
     <Reference Include="IgiCore.Characters.Shared.net">
-      <HintPath>..\plugins\IgiCore\characters\IgiCore.Characters.Shared.net.dll</HintPath>
+      <HintPath>..\..\characters\IgiCore.Characters.Shared.net.dll</HintPath>
     </Reference>
     <Reference Include="JetBrains.Annotations, Version=2019.1.1.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
       <HintPath>..\packages\JetBrains.Annotations.2019.1.1\lib\net20\JetBrains.Annotations.dll</HintPath>
@@ -93,6 +93,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\201904101511488_Init.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Business.cs" />
     <Compile Include="Models\Employee.cs" />
@@ -105,7 +106,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JobFramework.Shared\BusinessFramework.Shared.csproj">
+    <ProjectReference Include="..\BusinessFramework.Shared\BusinessFramework.Shared.csproj">
       <Project>{CBC5322E-3C1F-48EE-B57F-5D4B9DD6A937}</Project>
       <Name>BusinessFramework.Shared</Name>
       <Private>False</Private>

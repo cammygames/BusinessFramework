@@ -1,7 +1,7 @@
-name: Mercury Works/BusinessFramework
+name: MercuryWorks/BusinessFramework
 version: 1.0.0
-description: Framework for creating jobs
-author: Mercury Works
+description: Plugin for creating business in gtav nfive
+author: MercuryWorks
 license: LGPL
 server:
   main:
@@ -15,5 +15,3 @@ client:
     - MercuryWorks.BusinessFramework.Shared
   files:
     - Overlays/BusinessFrameworkOverlay.html
-dependencies:
-  IgiCore/vehicles: ^1.0.0
