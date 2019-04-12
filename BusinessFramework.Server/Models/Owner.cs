@@ -7,24 +7,15 @@ using System.Text;
 using System.Threading.Tasks;
 using IgiCore.Characters.Shared.Models;
 using MercuryWorks.BusinessFramework.Shared.Models;
-using NFive.SDK.Core.Models;
 
 namespace MercuryWorks.BusinessFramework.Server.Models
 {
-	public class Employee: IdentityModel, IEmployee
+	public class Owner
 	{
 		[Required]
-		public Guid BusinessId { get; set; }
-
-		public virtual IBusiness Business { get; set; }
-
-		[Required]
+		[ForeignKey("Character")]
 		public Guid CharacterId { get; set; }
 
-		[NotMapped]
 		public virtual ICharacter Character { get; set; }
-
-		[Required]
-		public IJob Job { get; set; }
 	}
 }

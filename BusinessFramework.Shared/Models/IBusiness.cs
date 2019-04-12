@@ -26,7 +26,7 @@ namespace MercuryWorks.BusinessFramework.Shared.Models
 		/// <value>
 		///	Owner of the job
 		/// </value>
-		ICharacter Owner { get; set; }
+		ICharacter Character { get; set; }
 
 		/// <summary>
 		/// Gets or sets the position of the marker on the map
@@ -35,25 +35,5 @@ namespace MercuryWorks.BusinessFramework.Shared.Models
 		///	Marker position on the map
 		/// </value>
 		Position MarkerPosition { get; set; }
-
-		/// <summary>
-		/// Gets or sets the list of interaction positions
-		/// </summary>
-		/// <value>
-		/// Interaction positions
-		/// </value>
-		List<Position> InteractionPositions { get; set; }
-
-		/// <summary>
-		///	 Gets or sets the list of spawn positions
-		/// </summary>
-		/// <value>
-		///	 Spawn Positions
-		/// </value>
-		List<Position> SpawnPositions { get; set; }
-
-		//Bank Accounts?
-
-		//Inventory?
 	}
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,13 +17,16 @@ namespace MercuryWorks.BusinessFramework.Server.Models
 		[StringLength(100, MinimumLength = 2)]
 		public string Name { get; set; }
 
-		public ICharacter Owner { get; set; }
+		[Required]
+		public Guid? CharacterId { get; set; }
+
+		[NotMapped]
+		public virtual ICharacter Character { get; set; }
 
 		[Required]
 		public Position MarkerPosition { get; set; }
 
-		public List<Position> InteractionPositions { get; set; }
-
-		public List<Position> SpawnPositions { get; set; }
+		[Required]
+		public Boolean Default { get; set; }
 	}
 }

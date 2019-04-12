@@ -25,5 +25,15 @@ namespace MercuryWorks.BusinessFramework.Server
 			// Send out new configuration
 			this.Rpc.Event(BusinessFrameworkEvents.Configuration).Trigger(this.Configuration);
 		}
+
+		private void Setup()
+		{
+
+		}
+
+		private void DefaultsExist()
+		{
+
+		}
 	}
 }

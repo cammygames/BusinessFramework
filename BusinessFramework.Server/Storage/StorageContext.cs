@@ -14,5 +14,7 @@ namespace MercuryWorks.BusinessFramework.Server.Storage
 		public DbSet<Job> Jobs { get; set; }
 
 		public DbSet<Employee> Employees { get; set; }
+
+		public DbSet<BusinessPosition> BusinessPositions { get; set; }
 	}
 }

@@ -59,6 +59,7 @@
     <Compile Include="Configuration.cs" />
     <Compile Include="Models\IBusiness.cs" />
     <Compile Include="Models\IEmployee.cs" />
+    <Compile Include="Models\IBusinessPosition.cs" />
     <Compile Include="Models\IJob.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
