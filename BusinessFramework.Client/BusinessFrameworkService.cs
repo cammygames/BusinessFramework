@@ -22,7 +22,6 @@ namespace MercuryWorks.BusinessFramework.Client
 	{
 		private Configuration config;
 		private BusinessFrameworkOverlay overlay;
-		private List<Blip> businessBlips = new List<Blip>();
 
 		public BusinessFrameworkService(ILogger logger, ITickManager ticks, IEventManager events, IRpcHandler rpc, ICommandManager commands, OverlayManager overlay, User user) : base(logger, ticks, events, rpc, commands, overlay, user) { }
 
@@ -42,19 +41,20 @@ namespace MercuryWorks.BusinessFramework.Client
 			// Attach a tick handler
 			this.Ticks.Attach(OnTick);
 
-			//test
-			List<BusinessPacket> packets =
-				await this.Rpc.Event(BusinessFrameworkEvents.BusinessRequestDefault).Request<List<BusinessPacket>>();
+			//Request Businesses marked as default.
+			SetupDefaultBusinesses(await this.Rpc.Event(BusinessFrameworkEvents.BusinessRequestDefault).Request<List<BusinessPacket>>());
+		}
 
+		private void SetupDefaultBusinesses(List<BusinessPacket> packets)
+		{
 			foreach (var packet in packets)
 			{
+				//Create Marker Blip
 				Blip blip = World.CreateBlip(packet.Business.MarkerPosition.ToVector3());
-				blip.Sprite = BlipSprite.Barber;
-				blip.Color = BlipColor.Red;
+				blip.Sprite = (BlipSprite)packet.Business.MarkerSpriteId;
+				blip.Color = (BlipColor)packet.Business.MarkerColorId;
 				blip.IsShortRange = true;
 				blip.Name = packet.Business.Name;
-
-				this.businessBlips.Add(blip);
 			}
 		}
 

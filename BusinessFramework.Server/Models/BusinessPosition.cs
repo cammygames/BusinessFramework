@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CitizenFX.Core;
 using MercuryWorks.BusinessFramework.Shared.Models;
 using NFive.SDK.Core.Models;
 
@@ -22,5 +23,17 @@ namespace MercuryWorks.BusinessFramework.Server.Models
 
 		[Required]
 		public PositionType PositionType { get; set; }
+
+		[Required]
+		public int MarkerTypeId { get; set; }
+
+		[Required]
+		public Position MarkerRotation { get; set; }
+
+		[Required]
+		public Position MarkerScale { get; set; }
+
+		[Required]
+		public Color MarkerColor { get; set; }
 	}
 }
