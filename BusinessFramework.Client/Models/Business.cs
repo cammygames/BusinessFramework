@@ -21,23 +21,23 @@ namespace MercuryWorks.BusinessFramework.Client.Models
 
 		public Position MarkerPosition { get; set; }
 
-		public int MarkerColorId { get; set; }
+		public long MarkerColorId { get; set; }
 
-//		[JsonIgnore]
-//		public virtual BlipColor MarkerColor
-//		{
-//			get => (BlipColor)this.MarkerColorId;
-//			set => this.MarkerColorId = (int)value;
-//		}
+		[JsonIgnore]
+		public virtual BlipColor MarkerColor
+		{
+			get => (BlipColor)this.MarkerColorId;
+			set => this.MarkerColorId = (int)value;
+		}
 
-		public int MarkerSpriteId { get; set; }
+		public long MarkerSpriteId { get; set; }
 
-//		[JsonIgnore]
-//		public virtual BlipSprite MarkSprite
-//		{
-//			get => (BlipSprite) this.MarkerSpriteId;
-//			set => this.MarkerSpriteId = (int) value;
-//		}
+		[JsonIgnore]
+		public virtual BlipSprite MarkSprite
+		{
+			get => (BlipSprite) this.MarkerSpriteId;
+			set => this.MarkerSpriteId = (int) value;
+		}
 
 		public Boolean Default { get; set; }
 	}

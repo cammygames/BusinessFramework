@@ -28,10 +28,10 @@ namespace MercuryWorks.BusinessFramework.Server.Models
 		public Position MarkerPosition { get; set; }
 
 		[Required]
-		public int MarkerColorId { get; set; }
+		public long MarkerColorId { get; set; }
 
 		[Required]
-		public int MarkerSpriteId { get; set; }
+		public long MarkerSpriteId { get; set; }
 
 		[Required]
 		public Boolean Default { get; set; }

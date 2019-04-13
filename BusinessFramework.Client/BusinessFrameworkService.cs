@@ -8,6 +8,7 @@ using NFive.SDK.Core.Diagnostics;
 using NFive.SDK.Core.Models.Player;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Threading.Tasks;
 using CitizenFX.Core;
 using MercuryWorks.BusinessFramework.Client.Models;
@@ -22,6 +23,8 @@ namespace MercuryWorks.BusinessFramework.Client
 	{
 		private Configuration config;
 		private BusinessFrameworkOverlay overlay;
+
+		private List<BusinessPosition> BusinessPositions = new List<BusinessPosition>();
 
 		public BusinessFrameworkService(ILogger logger, ITickManager ticks, IEventManager events, IRpcHandler rpc, ICommandManager commands, OverlayManager overlay, User user) : base(logger, ticks, events, rpc, commands, overlay, user) { }
 
@@ -38,11 +41,12 @@ namespace MercuryWorks.BusinessFramework.Client
 			// Create overlay
 			this.overlay = new BusinessFrameworkOverlay(this.OverlayManager);
 
-			// Attach a tick handler
-			this.Ticks.Attach(OnTick);
-
 			//Request Businesses marked as default.
 			SetupDefaultBusinesses(await this.Rpc.Event(BusinessFrameworkEvents.BusinessRequestDefault).Request<List<BusinessPacket>>());
+
+			// Attach a tick handler
+			this.Ticks.Attach(OnTick);
+			this.Ticks.Attach(MarkerDraw);
 		}
 
 		private void SetupDefaultBusinesses(List<BusinessPacket> packets)
@@ -55,7 +59,22 @@ namespace MercuryWorks.BusinessFramework.Client
 				blip.Color = (BlipColor)packet.Business.MarkerColorId;
 				blip.IsShortRange = true;
 				blip.Name = packet.Business.Name;
+
+				foreach (var position in packet.Positions)
+				{
+					this.BusinessPositions.Add(position);
+				}
 			}
+		}
+
+		private async Task MarkerDraw()
+		{
+			foreach (var position in this.BusinessPositions)
+			{
+				World.DrawMarker(position.MarkerType, position.Position.ToVector3(), Vector3.Zero, Vector3.Zero, position.MarkerScale.ToVector3(), position.MarkerColor.ToCitColor());
+			}
+
+			await Task.FromResult(0);
 		}
 
 		private async Task OnTick()

@@ -25,7 +25,7 @@ namespace MercuryWorks.BusinessFramework.Server.Models
 		public PositionType PositionType { get; set; }
 
 		[Required]
-		public int MarkerTypeId { get; set; }
+		public long MarkerTypeId { get; set; }
 
 		[Required]
 		public Position MarkerRotation { get; set; }

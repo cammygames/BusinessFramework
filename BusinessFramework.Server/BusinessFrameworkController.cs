@@ -13,6 +13,7 @@ using NFive.SDK.Server.Rpc;
 using MercuryWorks.BusinessFramework.Shared;
 using NFive.SDK.Core.Helpers;
 using NFive.SDK.Core.Models;
+using NFive.SDK.Core.Rpc;
 
 namespace MercuryWorks.BusinessFramework.Server
 {
@@ -37,56 +38,26 @@ namespace MercuryWorks.BusinessFramework.Server
 			this.Rpc.Event(BusinessFrameworkEvents.Configuration).Trigger(this.Configuration);
 		}
 
-		private async void SeedDefaults()
-		{
-			using (var context = new StorageContext())
-			using (var transaction = context.Database.BeginTransaction())
-			{
-				try
-				{
-					var test = new Business()
-					{
-						Id = GuidGenerator.GenerateTimeBasedGuid(),
-						Default = true,
-						CharacterId = new Guid("39ed1ea1-4d56-d230-ddfb-f44aed8d0d37"),
-						MarkerPosition = new Position(901.97290f, -172.13090f, 73.56619f),
-						Name = "Downtown Cab Co."
-					};
-
-					context.Businesses.Add(test);
-
-					await context.SaveChangesAsync();
-					transaction.Commit();
-
-					this.Logger.Debug($"Saved new Businesses: {test.Id}");
-				}
-				catch (Exception ex)
-				{
-					this.Logger.Error(ex);
-
-					transaction.Rollback();
-
-					// TODO: Reply with an error so client doesn't hang
-				}
-			}
-		}
-
 		private void FetchDefaults(IRpcEvent e)
 		{
+			this.Logger.Debug("GOT REQUEST FOR DATA FROM SOMEONE");
+
 			List<BusinessPacket> packets = new List<BusinessPacket>();
 
 			using (var context = new StorageContext())
 			{
-				var businesses = context.Businesses.Where(c => c.Default == true && c.Deleted == null).ToList();
+				var businesses = context.Businesses.Where(c => c.Default && c.Deleted == null).ToList();
 
 				foreach (var business in businesses)
 				{
-//					var locations = context.BusinessPositions
-//						.Where(c => c.BusinessId == business.Id && c.Deleted == null).ToList();
+					var locations = context.BusinessPositions
+						.Where(c => c.BusinessId == business.Id && c.Deleted == null).ToList();
 
-					var packet = new BusinessPacket(business, new List<BusinessPosition>());
+					var packet = new BusinessPacket(business, locations);
 
 					packets.Add(packet);
+
+					this.Logger.Debug($"ADDED BUSINESS WITH ID: {business.Id}");
 				}
 
 			}

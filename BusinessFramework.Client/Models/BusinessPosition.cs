@@ -20,14 +20,14 @@ namespace MercuryWorks.BusinessFramework.Client.Models
 
 		public PositionType PositionType { get; set; }
 
-		public int MarkerTypeId { get; set; }
+		public long MarkerTypeId { get; set; }
 
-//		[JsonIgnore]
-//		public virtual MarkerType MarkerType
-//		{
-//			get => (MarkerType)this.MarkerTypeId;
-//			set => this.MarkerTypeId = (int)value;
-//		}
+		[JsonIgnore]
+		public virtual MarkerType MarkerType
+		{
+			get => (MarkerType)this.MarkerTypeId;
+			set => this.MarkerTypeId = (int)value;
+		}
 
 		public Position MarkerRotation { get; set; }
 
