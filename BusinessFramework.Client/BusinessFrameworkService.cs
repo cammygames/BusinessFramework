@@ -7,10 +7,13 @@ using NFive.SDK.Client.Services;
 using NFive.SDK.Core.Diagnostics;
 using NFive.SDK.Core.Models.Player;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using CitizenFX.Core;
+using MercuryWorks.BusinessFramework.Client.Models;
 using MercuryWorks.BusinessFramework.Client.Overlays;
 using MercuryWorks.BusinessFramework.Shared;
+using NFive.SDK.Client.Extensions;
 
 namespace MercuryWorks.BusinessFramework.Client
 {
@@ -19,6 +22,7 @@ namespace MercuryWorks.BusinessFramework.Client
 	{
 		private Configuration config;
 		private BusinessFrameworkOverlay overlay;
+		private List<Blip> businessBlips = new List<Blip>();
 
 		public BusinessFrameworkService(ILogger logger, ITickManager ticks, IEventManager events, IRpcHandler rpc, ICommandManager commands, OverlayManager overlay, User user) : base(logger, ticks, events, rpc, commands, overlay, user) { }
 
@@ -38,17 +42,25 @@ namespace MercuryWorks.BusinessFramework.Client
 			// Attach a tick handler
 			this.Ticks.Attach(OnTick);
 
-			//test memes
-			Blip test = World.CreateBlip(new Vector3(-717, -156, 36));
-			test.Sprite = BlipSprite.Barber;
-			test.Color = BlipColor.Red;
-			test.IsShortRange = true;
-			test.Name = "Test Marker 1";
+			//test
+			List<BusinessPacket> packets =
+				await this.Rpc.Event(BusinessFrameworkEvents.BusinessRequestDefault).Request<List<BusinessPacket>>();
+
+			foreach (var packet in packets)
+			{
+				Blip blip = World.CreateBlip(packet.Business.MarkerPosition.ToVector3());
+				blip.Sprite = BlipSprite.Barber;
+				blip.Color = BlipColor.Red;
+				blip.IsShortRange = true;
+				blip.Name = packet.Business.Name;
+
+				this.businessBlips.Add(blip);
+			}
 		}
 
 		private async Task OnTick()
 		{
-			this.Logger.Debug("Hello World!");
+			//this.Logger.Debug("Hello World!");
 			// Do something every frame
 
 			await Delay(TimeSpan.FromSeconds(1));
