@@ -11,6 +11,8 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Threading.Tasks;
 using CitizenFX.Core;
+using CitizenFX.Core.Native;
+using CitizenFX.Core.UI;
 using MercuryWorks.BusinessFramework.Client.Models;
 using MercuryWorks.BusinessFramework.Client.Overlays;
 using MercuryWorks.BusinessFramework.Shared;
@@ -24,7 +26,7 @@ namespace MercuryWorks.BusinessFramework.Client
 		private Configuration config;
 		private BusinessFrameworkOverlay overlay;
 
-		private List<BusinessPosition> BusinessPositions = new List<BusinessPosition>();
+		private List<BusinessPosition> businessPositions = new List<BusinessPosition>();
 
 		public BusinessFrameworkService(ILogger logger, ITickManager ticks, IEventManager events, IRpcHandler rpc, ICommandManager commands, OverlayManager overlay, User user) : base(logger, ticks, events, rpc, commands, overlay, user) { }
 
@@ -62,16 +64,27 @@ namespace MercuryWorks.BusinessFramework.Client
 
 				foreach (var position in packet.Positions)
 				{
-					this.BusinessPositions.Add(position);
+					this.businessPositions.Add(position);
 				}
 			}
 		}
 
 		private async Task MarkerDraw()
 		{
-			foreach (var position in this.BusinessPositions)
+			foreach (var position in this.businessPositions)
 			{
-				World.DrawMarker(position.MarkerType, position.Position.ToVector3(), Vector3.Zero, Vector3.Zero, position.MarkerScale.ToVector3(), position.MarkerColor.ToCitColor());
+				var playerPosition = Game.Player.Character.Position;
+				var distance = GetDistanceBetweenCoords(playerPosition, position.Position.ToVector3());
+
+				if (distance < 100f)
+				{
+					World.DrawMarker(position.MarkerType, position.Position.ToVector3(), position.MarkerDirection.ToVector3(), position.MarkerRotation.ToVector3(), position.MarkerScale.ToVector3(), position.MarkerColor.ToCitColor());
+
+					if (distance <= 3f)
+					{
+						new Text("Press E to meme", new PointF(50, Screen.Height - 50), 0.4f, Color.FromArgb(255, 255, 255), Font.ChaletLondon, Alignment.Left, false, true).Draw();
+					}
+				}
 			}
 
 			await Task.FromResult(0);
@@ -83,6 +96,11 @@ namespace MercuryWorks.BusinessFramework.Client
 			// Do something every frame
 
 			await Delay(TimeSpan.FromSeconds(1));
+		}
+
+		private float GetDistanceBetweenCoords(Vector3 first, Vector3 second, bool useZ = true)
+		{
+			return API.GetDistanceBetweenCoords(first.X, first.Y, first.Z, second.X, second.Y, second.Z, useZ);
 		}
 	}
 }

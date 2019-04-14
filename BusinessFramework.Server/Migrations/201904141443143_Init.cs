@@ -11,7 +11,7 @@ namespace MercuryWorks.BusinessFramework.Server.Migrations
     [GeneratedCode("NFive.Migration", "0.3 Alpha Build 169")]
     public class Init : DbMigration, IMigrationMetadata
     {
-        string IMigrationMetadata.Id => "201904141201041_Init";
+        string IMigrationMetadata.Id => "201904141443143_Init";
         
         string IMigrationMetadata.Source => null;
         
@@ -92,7 +92,7 @@ namespace MercuryWorks.BusinessFramework.Server.Migrations
                         Created = c.DateTime(nullable: false, precision: 0),
                         Deleted = c.DateTime(precision: 0),
                     })
-                .PrimaryKey(t => t.Id);  
+                .PrimaryKey(t => t.Id);
         }
         
         public override void Down()

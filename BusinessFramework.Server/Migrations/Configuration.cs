@@ -20,23 +20,22 @@ namespace MercuryWorks.BusinessFramework.Server.Migrations
 				{
 					Id = GuidGenerator.GenerateTimeBasedGuid(),
 					Default = true,
-					CharacterId = null,
+					CharacterId = Guid.Empty,
 					MarkerPosition = new Position(901.97290f, -172.13090f, 73.56619f),
 					Name = "Downtown Cab Co.",
 					MarkerSpriteId = 198,
 					MarkerColorId = 66
+				},
+				new Business()
+				{
+					Id = GuidGenerator.GenerateTimeBasedGuid(),
+					Default = true,
+					CharacterId = Guid.Empty,
+					MarkerPosition = new Position(-712.19260f, -154.33080f, 36.93108f),
+					Name = "PONSONBYS",
+					MarkerSpriteId = 73,
+					MarkerColorId = 0
 				}
-//				},
-//				new Business()
-//				{
-//					Id = GuidGenerator.GenerateTimeBasedGuid(),
-//					Default = true,
-//					CharacterId = null,
-//					MarkerPosition = new Position(-712.19260f, -154.33080f, 36.93108f),
-//					Name = "PONSONBYS",
-//					MarkerSpriteId = 73,
-//					MarkerColorId = 0
-//				}
 			};
 
 			context.Businesses.AddRange(businesses);

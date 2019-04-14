@@ -92,7 +92,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201904141201041_Init.cs" />
+    <Compile Include="Migrations\201904141443143_Init.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Business.cs" />
     <Compile Include="Models\BusinessPacket.cs" />
@@ -116,4 +116,7 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy /Y "$(TargetDir)$(AssemblyName).dll" "D:\Workspaces\GTAV\server\resources\nfive\plugins\MercuryWorks\BusinessFramework\$(AssemblyName).dll"</PostBuildEvent>
+  </PropertyGroup>
 </Project>

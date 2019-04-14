@@ -95,4 +95,7 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy /Y "$(TargetDir)$(AssemblyName).dll" "D:\Workspaces\GTAV\server\resources\nfive\plugins\MercuryWorks\BusinessFramework\$(AssemblyName).dll"</PostBuildEvent>
+  </PropertyGroup>
 </Project>

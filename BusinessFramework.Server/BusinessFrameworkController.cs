@@ -40,8 +40,6 @@ namespace MercuryWorks.BusinessFramework.Server
 
 		private void FetchDefaults(IRpcEvent e)
 		{
-			this.Logger.Debug("GOT REQUEST FOR DATA FROM SOMEONE");
-
 			List<BusinessPacket> packets = new List<BusinessPacket>();
 
 			using (var context = new StorageContext())
@@ -56,8 +54,6 @@ namespace MercuryWorks.BusinessFramework.Server
 					var packet = new BusinessPacket(business, locations);
 
 					packets.Add(packet);
-
-					this.Logger.Debug($"ADDED BUSINESS WITH ID: {business.Id}");
 				}
 
 			}
