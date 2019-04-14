@@ -45,8 +45,8 @@ namespace MercuryWorks.BusinessFramework.Client
 			SetupDefaultBusinesses(await this.Rpc.Event(BusinessFrameworkEvents.BusinessRequestDefault).Request<List<BusinessPacket>>());
 
 			// Attach a tick handler
-			this.Ticks.Attach(OnTick);
 			this.Ticks.Attach(MarkerDraw);
+			this.Ticks.Attach(OnTick);
 		}
 
 		private void SetupDefaultBusinesses(List<BusinessPacket> packets)

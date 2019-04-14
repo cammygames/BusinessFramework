@@ -31,6 +31,9 @@ namespace MercuryWorks.BusinessFramework.Server.Models
 		public Position MarkerRotation { get; set; }
 
 		[Required]
+		public Position MarkerDirection { get; set; }
+
+		[Required]
 		public Position MarkerScale { get; set; }
 
 		[Required]
