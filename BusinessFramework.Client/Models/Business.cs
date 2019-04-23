@@ -21,6 +21,8 @@ namespace MercuryWorks.BusinessFramework.Client.Models
 
 		public Position MarkerPosition { get; set; }
 
+		public BusinessType BusinessType { get; set; }
+
 		public long MarkerColorId { get; set; }
 
 		[JsonIgnore]

@@ -35,5 +35,22 @@ namespace MercuryWorks.BusinessFramework.Shared.Models
 		///	Marker position on the map
 		/// </value>
 		Position MarkerPosition { get; set; }
+
+		BusinessType BusinessType { get; set; }
+	}
+
+	public enum BusinessType
+	{
+		CLOTHING,
+		GASSTATION,
+		GENERAL,
+		GUN,
+		DEALERSHIP,
+		MECHANIC,
+		TOW,
+		LIQUOR,
+		JEWELER,
+		TAXI,
+		CUSTOM
 	}
 }

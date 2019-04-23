@@ -34,6 +34,9 @@ namespace MercuryWorks.BusinessFramework.Server.Models
 		public long MarkerSpriteId { get; set; }
 
 		[Required]
+		public BusinessType BusinessType { get; set; }
+
+		[Required]
 		public Boolean Default { get; set; }
 	}
 }

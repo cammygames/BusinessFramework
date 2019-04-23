@@ -17,6 +17,7 @@ using MercuryWorks.BusinessFramework.Client.Models;
 using MercuryWorks.BusinessFramework.Client.Overlays;
 using MercuryWorks.BusinessFramework.Shared;
 using NFive.SDK.Client.Extensions;
+using NFive.SDK.Client.Input;
 
 namespace MercuryWorks.BusinessFramework.Client
 {
@@ -27,6 +28,7 @@ namespace MercuryWorks.BusinessFramework.Client
 		private BusinessFrameworkOverlay overlay;
 
 		private List<BusinessPosition> businessPositions = new List<BusinessPosition>();
+		private List<Business> businesses = new List<Business>();
 
 		public BusinessFrameworkService(ILogger logger, ITickManager ticks, IEventManager events, IRpcHandler rpc, ICommandManager commands, OverlayManager overlay, User user) : base(logger, ticks, events, rpc, commands, overlay, user) { }
 
@@ -62,8 +64,11 @@ namespace MercuryWorks.BusinessFramework.Client
 				blip.IsShortRange = true;
 				blip.Name = packet.Business.Name;
 
+				this.businesses.Add(packet.Business);
+	
 				foreach (var position in packet.Positions)
 				{
+					position.Business = packet.Business;
 					this.businessPositions.Add(position);
 				}
 			}
@@ -82,7 +87,12 @@ namespace MercuryWorks.BusinessFramework.Client
 
 					if (distance <= 3f)
 					{
-						new Text("Press E to meme", new PointF(50, Screen.Height - 50), 0.4f, Color.FromArgb(255, 255, 255), Font.ChaletLondon, Alignment.Left, false, true).Draw();
+						new Text("Press E to Interact", new PointF(50, Screen.Height - 150), 0.4f, Color.FromArgb(255, 255, 255), Font.ChaletLondon, Alignment.Left, false, true).Draw();
+
+						if (!Input.IsControlJustReleased(Control.VehicleHorn)) return;
+							new Text($"{position.Business.Name}", new PointF(50, Screen.Height - 200), 0.4f, Color.FromArgb(255, 255, 255), Font.ChaletLondon, Alignment.Left, false, true).Draw();
+
+						//Some how need to figure out what action to call based on the buisness
 					}
 				}
 			}
